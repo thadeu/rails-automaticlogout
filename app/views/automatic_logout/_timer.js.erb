@@ -1,0 +1,60 @@
+<script>
+var timer = "<%= session[:auto_session_expires_at] %>";
+var now_in_seconds = new Date().getTime() / 1000;
+var timeout_in_seconds = new Date(timer).getTime() / 1000;
+
+var target_date = new Date(timer).getTime();
+var dias, horas, minutos, segundos;
+
+var diff_in_seconds = new Number();
+diff_in_seconds = (timeout_in_seconds - now_in_seconds).toFixed(0);
+
+function regressive(){
+
+  if (diff_in_seconds <= 0){
+    if (confirm("<%= session[:message] %>")){
+      window.location.href = '/destroy_automatic_logout';
+    }
+  }else{
+    var current_date = new Date().getTime();
+    var segundos_f = (target_date - current_date) / 1000;
+
+    dias = parseInt(segundos_f / 86400);
+    segundos_f = segundos_f % 86400;
+
+    horas = parseInt(segundos_f / 3600);
+    segundos_f = segundos_f % 3600;
+
+    minutos = parseInt(segundos_f / 60);
+    segundos = parseInt(segundos_f % 60);
+
+    // Formata o número menor que dez, ex: 08, 07, ...
+		if(horas < 10){
+			horas = "0"+horas;
+			horas = horas.substr(0, 2);
+		}
+
+		if(minutos < 10){
+			minutos = "0"+minutos;
+			minutos = minutos.substr(0, 2);
+		}
+
+		if(segundos <=9){
+			segundos = "0"+segundos;
+		}
+
+    if (diff_in_seconds >= 0){
+      $('.regressive-timer').text(horas + ':' + minutos + ':' + segundos);
+    }
+
+    setTimeout('regressive()',1000);
+
+    diff_in_seconds--;
+  }
+}
+
+regressive();
+
+</script>
+
+<div class="regressive-timer"></div>
