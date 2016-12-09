@@ -2,6 +2,7 @@
 By Thadeu Esteves Jr.
 
 [![Gem Version](https://badge.fury.io/rb/rails-automaticlogout.png)](https://badge.fury.io/rb/rails-automaticlogout)
+[![Code Climate](https://codeclimate.com/github/Thadeu/rails-automaticlogout/badges/gpa.svg)](https://codeclimate.com/github/Thadeu/rails-automaticlogout)
 
 Provides automatic session timeout in a Rails application. Very easy to install and configure. Have you ever wanted to force your users off your app if they go idle for a certain period of time? Many online banking sites use this technique. If your app is used on any kind of public computer system, this plugin is a necessity.
 
