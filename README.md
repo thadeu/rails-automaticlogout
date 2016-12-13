@@ -14,7 +14,7 @@ Provides automatic session timeout in a Rails application. Very easy to install 
 Rails Automatic Logout works only Rails 4. You can add it to your Gemfile with:
 
 ```ruby
-gem 'rails-automaticlogout', '0.1.1'
+gem 'rails-automaticlogout', '~> 0.1'
 ```
 
 Then run bundle install
