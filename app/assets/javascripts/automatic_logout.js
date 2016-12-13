@@ -22,7 +22,7 @@ AutomaticLogout.destroySession = function(){
 }
 
 /**
- * Method regressive time based in session auto expired at
+ * Method regressive time based in session auto expired at.
  * @param  {[type]} date_session [description]
  * @return {[type]}              [description]
  */
