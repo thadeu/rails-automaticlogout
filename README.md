@@ -59,6 +59,12 @@ class ApplicationController < ActionController::Base
 end
 ```
 
+### Configure Javascript
+Add in your application.js this require
+
+```javascript 
+//= require automatic_logout
+```
 ### Configure View (OPTIONAL)
 
 Use Helper in your view, for show regressive timer. Add this in your file application.html.erb
