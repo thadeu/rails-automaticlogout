@@ -48,9 +48,9 @@ AutomaticLogout.regressiveTimer = function(){;
   diff_in_seconds = (timeout_in_seconds - now_in_seconds).toFixed(0);
 
   if (diff_in_seconds <= 0){
-    if (confirm(data_message)){
+    alertify.alert(data_message, function () {
       AutomaticLogout.destroySession();
-    }
+    });
   }else{
     var seconds_float = (target_date - current_date) / 1000,
         date_format = AutomaticLogout.parseDate(seconds_float);
@@ -129,9 +129,9 @@ AutomaticLogout.ajaxSessionTimeout = function(){
             var now_time = (new Date().getTime());
 
             if ((response_timeout < now_time) === true){
-              if (confirm(data.message)){
+              alertify.alert(data_message, function () {
                 window.location.href = '/destroy_automatic_logout';
-              }
+              });
             }
           }, (data.seconds / 2) * 1000) // utiliza o mesmo valor em seconds que a pessoa irá ficar logado
         }
