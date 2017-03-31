@@ -62,7 +62,7 @@ end
 ### Configure Javascript
 Add in your application.js this require
 
-```javascript 
+```javascript
 //= require automatic_logout
 ```
 ### Configure View (OPTIONAL)
@@ -77,6 +77,9 @@ Use Helper in your view, for show regressive timer. Add this in your file applic
 * Add translations
 * Add configurations for action_view
 * Add Suport for Rails 5.x
+* Setup test environment
+* Add Tests
+* Integrate automatic verification services (Travis-CI, Hakiri, CodeClimate, etc)
 
 
 ## Contributing
