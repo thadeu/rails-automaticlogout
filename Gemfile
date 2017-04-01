@@ -5,7 +5,7 @@ gemspec
 
 group :development, :test do
   gem 'byebug'
-  gem 'guard-rspec', require: false
+  gem 'guard-rspec', require: false  
   gem 'rspec', '~> 3.5'
 end
 
