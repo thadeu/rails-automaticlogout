@@ -18,10 +18,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "actionpack", "~> 3.2"
-  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rails",              "~> 4.2"
+  spec.add_development_dependency "factory_girl_rails"
+  spec.add_development_dependency "bundler",            "~> 1.11"
+  spec.add_development_dependency 'rspec-rails'
 
   spec.add_dependency "alertify-rails", "~> 0.2.0"
 end

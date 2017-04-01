@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe 'AutomaticLogout::SessionsController', type: :controller do
 
-  # check value in session active & inactive
-  describe 'check application' do
+  describe 'GET /status_automatic_logout' do
+
     context 'when logged in' do
       pending 'returns live true'
       pending 'returns auto_session_expires_at not empty'
