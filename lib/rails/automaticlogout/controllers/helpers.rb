@@ -24,8 +24,6 @@ module Rails::AutomaticLogout
             if current_user
               c.session[:seconds] = expires_at_in_seconds(time)
               c.session[:message] = message
-            else
-              c.send :reset_session
             end
           end
         end
