@@ -34,35 +34,37 @@ AutomaticLogout.regressiveTimer = function(){;
    */
   var data_timer = $('.regressive-timer').data('expires-at'),
       data_message = $('.regressive-timer').data('message'),
-      now_in_seconds = new Date().getTime() / 1000,
-      timeout_in_seconds = new Date(data_timer).getTime() / 1000,
-      diff_in_seconds = new Number(),
-      target_date = new Date(data_timer).getTime(),
-      current_date = new Date().getTime();
+      data_seconds = $('.regressive-timer').data('seconds'),
+      current_time = new Date().getTime();
 
-  /**
-   * diff in seconds with 0 decimals
-   * @param  {[type]} timeout_in_seconds -             now_in_seconds [description]
-   * @return {[type]}                    [description]
-   */
-  diff_in_seconds = (timeout_in_seconds - now_in_seconds).toFixed(0);
+  var time_expired = new Date();
+  time_expired.setSeconds(time_expired.getSeconds() + data_seconds);
 
-  if (diff_in_seconds <= 0){
-    alertify.alert(data_message, function () {
-      AutomaticLogout.destroySession();
-    });
-  }else{
-    var seconds_float = (target_date - current_date) / 1000,
-        date_format = AutomaticLogout.parseDate(seconds_float);
+  var timerDecrement = setInterval(function(){
+    
+    if (data_seconds == 0) { 
+      clearInterval(timerDecrement); 
 
-    if (diff_in_seconds >= 0){
+      // limpa a sessão após o ok
+      alertify.alert(data_message, function () {
+        AutomaticLogout.destroySession();
+      });
+    }else{
+      //tempo descrecente
+      time_expired.setSeconds(time_expired.getSeconds() - 1);
+      
+      var 
+        // converte pra segundos
+        seconds_integer = (time_expired.getTime() - current_time) / 1000,
+        //faz o parse 
+        date_format = AutomaticLogout.parseDate(seconds_integer);
+
+      // atualiza o DOM
       $('.regressive-timer').text(date_format.hours + ':' + date_format.minutes + ':' + date_format.seconds);
     }
-
-    setTimeout('AutomaticLogout.regressiveTimer()',1000);
-
-    diff_in_seconds--;
-  }
+    
+    data_seconds -= 1;
+  }, 1000)
 }
 
 /**
