@@ -32,8 +32,7 @@ AutomaticLogout.regressiveTimer = function(){;
    * @param  {[type]} '.regressive-timer' [description]
    * @return {[type]}                     [description]
    */
-  var data_timer = $('.regressive-timer').data('expires-at'),
-      data_message = $('.regressive-timer').data('message'),
+  var data_message = $('.regressive-timer').data('message'),
       data_seconds = $('.regressive-timer').data('seconds'),
       current_time = new Date().getTime();
 
@@ -124,18 +123,21 @@ AutomaticLogout.ajaxSessionTimeout = function(){
     $.ajax({
       url: '/status_automatic_logout',
       success: function(data) {
-        if (data.timeout !== "null" && data.live === true){
-          var response_timeout = (new Date(data.timeout).getTime());
+        if (data.seconds !== "null" && data.live === true){
+          
+          var data_message = data.message, data_seconds = data.seconds;
 
-          setInterval(function(){
-            var now_time = (new Date().getTime());
-
-            if ((response_timeout < now_time) === true){
+          var timerDecrement = setInterval(function(){    
+            if (data_seconds == 0) { 
+              clearInterval(timerDecrement); 
+              // limpa a sessão após o ok do alertify
               alertify.alert(data_message, function () {
-                window.location.href = '/destroy_automatic_logout';
+                AutomaticLogout.destroySession();
               });
             }
-          }, (data.seconds / 2) * 1000) // utiliza o mesmo valor em seconds que a pessoa irá ficar logado
+            
+            data_seconds -= 1;
+          }, 1000)
         }
       }
     });
